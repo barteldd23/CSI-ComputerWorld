@@ -6,24 +6,10 @@ using System.Threading.Tasks;
 
 namespace DDB.ComputerWorld.BL.Models
 {
-    public class Computer
+    public class Computer : Equipment //Means inherit Equipment Class. Can only inherit from 1 class
     {
         #region "Properties"
-        private int id;
-
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
-
-        private string manufacturer;
-
-        public string Manufacturer
-        {
-            get { return manufacturer; }
-            set { manufacturer = value; }
-        }
+        
 
         private string model;
 
@@ -55,14 +41,6 @@ namespace DDB.ComputerWorld.BL.Models
         {
             get { return processor; }
             set { processor = value; }
-        }
-
-        private double cost;
-
-        public double Cost
-        {
-            get { return cost; }
-            set { cost = value; }
         }
 
         private List<Application> applications;
