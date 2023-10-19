@@ -51,6 +51,16 @@ namespace DDB.ComputerWorld.BL.Models
             set { applications = value; }
         }
 
+        // Make a calculated Field
+        // to combine info
+        public string Information
+        {
+            get
+            {
+                return this.Manufacturer + " " + Model + " " + Cost.ToString("C");
+            }
+        }
+
 
 
 
