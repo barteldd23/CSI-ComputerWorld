@@ -6,6 +6,21 @@ using System.Threading.Tasks;
 
 namespace DDB.ComputerWorld.BL.Models
 {
+    public class HardDriveNegativeException : Exception
+    {
+        // constructor number 1
+        public HardDriveNegativeException() :base("Hard Drive cannot be negative")
+        { 
+
+        }
+
+        // constructor number 2
+        public HardDriveNegativeException(string message) : base(message)
+        {
+
+        }
+    }
+
     public class Computer : Equipment //Means inherit Equipment Class. Can only inherit from 1 class
     {
         #region "Properties"
@@ -32,7 +47,22 @@ namespace DDB.ComputerWorld.BL.Models
         public int HardDriveSize
         {
             get { return hardDriveSize; }
-            set { hardDriveSize = value; }
+            set 
+            { 
+                if(value < 0)
+                {
+                    // Throw a non-custom error
+                    //throw new Exception("Hard Drive Negative");
+
+                    //throw new HardDriveNegativeException();
+                    throw new HardDriveNegativeException("Invalid Hard Drive Size. Must be Positive.");
+                }
+                else
+                {
+                    hardDriveSize = value;
+                }
+                
+            }
         }
 
         private string processor;
