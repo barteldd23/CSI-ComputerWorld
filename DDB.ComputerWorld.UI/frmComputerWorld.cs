@@ -84,5 +84,123 @@ namespace DDB.ComputerWorld.UI
                 lblStatus.Text = ex.Message;
             }
         }
+
+        private void btnMakeComputer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
+
+                Computer computer = new Computer();
+                computer.Id = computers.Count + 1;
+                SetProperties(computer);
+
+                computers.Add(computer);
+                Refresh();
+
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = ex.Message;
+            }
+        }
+
+        private void SetProperties(Computer computer)
+        {
+            try
+            {
+                computer.Manufacturer = txtManufacturer.Text;
+                computer.Model = txtModel.Text;
+                computer.Processor = txtProcessor.Text;
+                computer.HardDriveSize = Convert.ToInt32(txtHardDriveSize.Text);
+                computer.Cost = Convert.ToDouble(txtCost.Text);
+                computer.Memory = Convert.ToDouble(txtMemory.Text);
+                computer.EquipmentType = (EquipmentTypes)cbxEquipmentType.SelectedIndex;
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = ex.Message;
+            }
+        }
+
+        private void btnFakeData_Click(object sender, EventArgs e)
+        {
+            txtCost.Text = "1243.50";
+            txtHardDriveSize.Text = "2345";
+            txtModel.Text = "NewModel";
+            txtManufacturer.Text = "MyManufacturer";
+            txtMemory.Text = "123";
+            txtProcessor.Text = "567";
+            cbxEquipmentType.SelectedIndex = 3;
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
+
+                Computer computer = computers[lbxEquipment.SelectedIndex];
+                SetProperties(computer);
+
+                Refresh();
+
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = ex.Message;
+            }
+        }
+
+        private void btnDeleteComputer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
+
+                if(lbxEquipment.SelectedIndex > 0)
+                {
+                    // The user picked a computer.
+                    //Method 1 - Remove an object.
+                    computers.Remove(computers[lbxEquipment.SelectedIndex]);
+
+                    // Method 2 - Remove by index
+                    //computers.RemoveAt(lbxEquipment.SelectedIndex);
+
+                    Refresh();
+                    ClearScreen();
+                    lbxEquipment.SelectedIndex = -1;
+                }
+                else
+                {
+                    //nothing selected
+                    throw new Exception("Nothing is selected you goof.");
+                }
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = ex.Message;
+            }
+        }
+
+        private void ClearScreen()
+        {
+            foreach(Control control in this.Controls)
+            {
+                if(control is TextBox)
+                {
+                    control.Text = string.Empty;
+                }
+            }
+
+            cbxEquipmentType.SelectedIndex = -1;
+        }
     }
 }

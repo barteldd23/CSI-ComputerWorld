@@ -46,6 +46,11 @@
             txtMemory = new TextBox();
             txtProcessor = new TextBox();
             cbxEquipmentType = new ComboBox();
+            btnMakeComputer = new Button();
+            btnFakeData = new Button();
+            btnUpdate = new Button();
+            btnDeleteComputer = new Button();
+            button5 = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvChildren).BeginInit();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -199,11 +204,65 @@
             cbxEquipmentType.Size = new Size(166, 23);
             cbxEquipmentType.TabIndex = 16;
             // 
+            // btnMakeComputer
+            // 
+            btnMakeComputer.Location = new Point(640, 12);
+            btnMakeComputer.Name = "btnMakeComputer";
+            btnMakeComputer.Size = new Size(148, 23);
+            btnMakeComputer.TabIndex = 17;
+            btnMakeComputer.Text = "Make Computer";
+            btnMakeComputer.UseVisualStyleBackColor = true;
+            btnMakeComputer.Click += btnMakeComputer_Click;
+            // 
+            // btnFakeData
+            // 
+            btnFakeData.Location = new Point(640, 35);
+            btnFakeData.Name = "btnFakeData";
+            btnFakeData.Size = new Size(148, 23);
+            btnFakeData.TabIndex = 18;
+            btnFakeData.Text = "Fake Data";
+            btnFakeData.UseVisualStyleBackColor = true;
+            btnFakeData.Click += btnFakeData_Click;
+            // 
+            // btnUpdate
+            // 
+            btnUpdate.Location = new Point(640, 58);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(148, 23);
+            btnUpdate.TabIndex = 19;
+            btnUpdate.Text = "Update Computer";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
+            // 
+            // btnDeleteComputer
+            // 
+            btnDeleteComputer.Location = new Point(640, 81);
+            btnDeleteComputer.Name = "btnDeleteComputer";
+            btnDeleteComputer.Size = new Size(148, 23);
+            btnDeleteComputer.TabIndex = 20;
+            btnDeleteComputer.Text = "Delete Computer";
+            btnDeleteComputer.UseVisualStyleBackColor = true;
+            btnDeleteComputer.Click += btnDeleteComputer_Click;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(640, 104);
+            button5.Name = "button5";
+            button5.Size = new Size(148, 23);
+            button5.TabIndex = 21;
+            button5.Text = "button5";
+            button5.UseVisualStyleBackColor = true;
+            // 
             // frmComputerWorld
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button5);
+            Controls.Add(btnDeleteComputer);
+            Controls.Add(btnUpdate);
+            Controls.Add(btnFakeData);
+            Controls.Add(btnMakeComputer);
             Controls.Add(cbxEquipmentType);
             Controls.Add(txtProcessor);
             Controls.Add(txtMemory);
@@ -252,5 +311,10 @@
         private TextBox txtMemory;
         private TextBox txtProcessor;
         private ComboBox cbxEquipmentType;
+        private Button btnMakeComputer;
+        private Button btnFakeData;
+        private Button btnUpdate;
+        private Button btnDeleteComputer;
+        private Button button5;
     }
 }
