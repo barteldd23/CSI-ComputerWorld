@@ -47,6 +47,7 @@ namespace DDB.ComputerWorld.BL
                     Cost = 599.99,
                     HardDriveSize = 4196,
                     Memory = 64,
+                    Processor = "CGX1001",
                     EquipmentType = EquipmentTypes.Desktop
                 };
 
