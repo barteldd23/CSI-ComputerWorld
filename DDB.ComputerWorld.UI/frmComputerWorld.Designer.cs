@@ -50,7 +50,7 @@
             btnFakeData = new Button();
             btnUpdate = new Button();
             btnDeleteComputer = new Button();
-            button5 = new Button();
+            btnAddApplication = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvChildren).BeginInit();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -244,21 +244,22 @@
             btnDeleteComputer.UseVisualStyleBackColor = true;
             btnDeleteComputer.Click += btnDeleteComputer_Click;
             // 
-            // button5
+            // btnAddApplication
             // 
-            button5.Location = new Point(640, 104);
-            button5.Name = "button5";
-            button5.Size = new Size(148, 23);
-            button5.TabIndex = 21;
-            button5.Text = "button5";
-            button5.UseVisualStyleBackColor = true;
+            btnAddApplication.Location = new Point(640, 104);
+            btnAddApplication.Name = "btnAddApplication";
+            btnAddApplication.Size = new Size(148, 23);
+            btnAddApplication.TabIndex = 21;
+            btnAddApplication.Text = "Add Application";
+            btnAddApplication.UseVisualStyleBackColor = true;
+            btnAddApplication.Click += btnAddApplication_Click;
             // 
             // frmComputerWorld
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button5);
+            Controls.Add(btnAddApplication);
             Controls.Add(btnDeleteComputer);
             Controls.Add(btnUpdate);
             Controls.Add(btnFakeData);
@@ -315,6 +316,6 @@
         private Button btnFakeData;
         private Button btnUpdate;
         private Button btnDeleteComputer;
-        private Button button5;
+        private Button btnAddApplication;
     }
 }

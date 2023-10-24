@@ -49,6 +49,7 @@ namespace DDB.ComputerWorld.UI
             try
             {
                 lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
 
                 // Check to see if something is selected
                 if (lbxEquipment.SelectedIndex >= 0)
@@ -164,7 +165,7 @@ namespace DDB.ComputerWorld.UI
                 lblStatus.ForeColor = Color.Black;
                 lblStatus.Text = string.Empty;
 
-                if(lbxEquipment.SelectedIndex > 0)
+                if (lbxEquipment.SelectedIndex >= 0)
                 {
                     // The user picked a computer.
                     //Method 1 - Remove an object.
@@ -192,15 +193,46 @@ namespace DDB.ComputerWorld.UI
 
         private void ClearScreen()
         {
-            foreach(Control control in this.Controls)
+            foreach (Control control in this.Controls)
             {
-                if(control is TextBox)
+                if (control is TextBox)
                 {
                     control.Text = string.Empty;
                 }
             }
 
             cbxEquipmentType.SelectedIndex = -1;
+        }
+
+        private void btnAddApplication_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
+
+                frmApplication frmApplication = new frmApplication();
+
+                if (lbxEquipment.SelectedIndex >= 0)
+                {
+                    frmApplication.Computer = computers[lbxEquipment.SelectedIndex];
+                    frmApplication.ShowDialog();
+
+                    dgvChildren.DataSource = null;
+                    dgvChildren.DataSource = computers[lbxEquipment.SelectedIndex].Applications;
+                }
+                else
+                {
+                    throw new Exception("Please pick a computer.");
+                }
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = ex.Message;
+            }
+
+            
         }
     }
 }

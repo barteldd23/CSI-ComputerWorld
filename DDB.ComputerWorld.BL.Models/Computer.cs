@@ -23,6 +23,11 @@ namespace DDB.ComputerWorld.BL.Models
 
     public class Computer : Equipment //Means inherit Equipment Class. Can only inherit from 1 class
     {
+        public Computer()
+        {
+            Applications = new List<Application>();
+        }
+
         #region "Properties"
         
 
