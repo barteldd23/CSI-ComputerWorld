@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DDB.ComputerWorld.BL.Models\DDB.ComputerWorld.BL.Models.csproj" />
-    <ProjectReference Include="..\DDB.Utility.PL\DDB.Utility.PL.csproj" />
-  </ItemGroup>
-
 </Project>

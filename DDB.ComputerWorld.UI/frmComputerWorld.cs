@@ -211,7 +211,7 @@ namespace DDB.ComputerWorld.UI
                 lblStatus.ForeColor = Color.Black;
                 lblStatus.Text = string.Empty;
 
-                frmApplication frmApplication = new frmApplication();
+                frmApplication frmApplication = new frmApplication(ScreenMode.Add);
 
                 if (lbxEquipment.SelectedIndex >= 0)
                 {
@@ -232,7 +232,39 @@ namespace DDB.ComputerWorld.UI
                 lblStatus.Text = ex.Message;
             }
 
-            
+
+        }
+
+        private void btnEditApplication_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
+
+                frmApplication frmApplication = new frmApplication(ScreenMode.Edit);
+
+                if (dgvChildren.CurrentRow.Index >= 0)
+                {
+                    frmApplication.Computer = computers[lbxEquipment.SelectedIndex];
+                    //frmApplication.ApplicationId = computers[lbxEquipment.SelectedIndex].Applications[dgvChildren.CurrentRow.Index].Id;
+                    frmApplication.ApplicationId = dgvChildren.CurrentRow.Index;
+                    frmApplication.ShowDialog();
+
+                    dgvChildren.DataSource = null;
+                    dgvChildren.DataSource = computers[lbxEquipment.SelectedIndex].Applications;
+                }
+                else
+                {
+                    throw new Exception("Please pick a computer.");
+                }
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = ex.Message;
+            }
+
         }
     }
 }

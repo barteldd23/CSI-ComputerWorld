@@ -51,6 +51,7 @@
             btnUpdate = new Button();
             btnDeleteComputer = new Button();
             btnAddApplication = new Button();
+            btnEditApplication = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvChildren).BeginInit();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -216,7 +217,7 @@
             // 
             // btnFakeData
             // 
-            btnFakeData.Location = new Point(640, 35);
+            btnFakeData.Location = new Point(640, 36);
             btnFakeData.Name = "btnFakeData";
             btnFakeData.Size = new Size(148, 23);
             btnFakeData.TabIndex = 18;
@@ -226,7 +227,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(640, 58);
+            btnUpdate.Location = new Point(640, 60);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(148, 23);
             btnUpdate.TabIndex = 19;
@@ -236,7 +237,7 @@
             // 
             // btnDeleteComputer
             // 
-            btnDeleteComputer.Location = new Point(640, 81);
+            btnDeleteComputer.Location = new Point(640, 84);
             btnDeleteComputer.Name = "btnDeleteComputer";
             btnDeleteComputer.Size = new Size(148, 23);
             btnDeleteComputer.TabIndex = 20;
@@ -246,7 +247,7 @@
             // 
             // btnAddApplication
             // 
-            btnAddApplication.Location = new Point(640, 104);
+            btnAddApplication.Location = new Point(640, 108);
             btnAddApplication.Name = "btnAddApplication";
             btnAddApplication.Size = new Size(148, 23);
             btnAddApplication.TabIndex = 21;
@@ -254,11 +255,22 @@
             btnAddApplication.UseVisualStyleBackColor = true;
             btnAddApplication.Click += btnAddApplication_Click;
             // 
+            // btnEditApplication
+            // 
+            btnEditApplication.Location = new Point(640, 132);
+            btnEditApplication.Name = "btnEditApplication";
+            btnEditApplication.Size = new Size(148, 23);
+            btnEditApplication.TabIndex = 22;
+            btnEditApplication.Text = "Edit Application";
+            btnEditApplication.UseVisualStyleBackColor = true;
+            btnEditApplication.Click += btnEditApplication_Click;
+            // 
             // frmComputerWorld
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnEditApplication);
             Controls.Add(btnAddApplication);
             Controls.Add(btnDeleteComputer);
             Controls.Add(btnUpdate);
@@ -317,5 +329,6 @@
         private Button btnUpdate;
         private Button btnDeleteComputer;
         private Button btnAddApplication;
+        private Button btnEditApplication;
     }
 }
