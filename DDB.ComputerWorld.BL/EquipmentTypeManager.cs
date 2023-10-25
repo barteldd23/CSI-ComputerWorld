@@ -22,7 +22,7 @@ namespace DDB.ComputerWorld.BL
                 string name = Enum.Parse(typeof(EquipmentTypes), type).ToString();
 
                 // add a newly populated object to the list
-                equipmentTypes.Add(new EquipmentType { Id = 0, Name = name });
+                equipmentTypes.Add(new EquipmentType { Id = id, Name = name });
             }
 
             return equipmentTypes;
