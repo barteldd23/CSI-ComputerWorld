@@ -6,36 +6,77 @@ using System.Threading.Tasks;
 
 namespace DDB.Utility.PL
 {
-    public class FileIO
+    public static class FileIO
     {
-        public void Copy()
+        public static void Copy(string source, string target, bool overwrite=false)
+        {
+            try
+            {
+                if (File.Exists(source))
+                {
+                    File.Copy(source, target, overwrite);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public static void Move(string source, string target, bool overwrite=false)
+        {
+            try
+            {
+                if (File.Exists(source))
+                {
+                    File.Move(source, target, overwrite);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public static void Delete(string source)
+        {
+            try
+            {
+                if (File.Exists(source))
+                {
+                    File.Delete(source);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public static void Write()
         {
 
         }
 
-        public void Move()
+        public static void Read()
         {
 
         }
 
-        public void Delete()
+        public static void Rename(string source, string target)
         {
+            try
+            {
 
-        }
+            }
+            catch (Exception)
+            {
 
-        public void Write()
-        {
-
-        }
-
-        public void Read()
-        {
-
-        }
-
-        public void Rename()
-        {
-
+                throw;
+            }
         }
     }
 }
