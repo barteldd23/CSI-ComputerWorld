@@ -45,5 +45,21 @@ namespace DDB.ComputerWorld.BL.Test
                 Assert.Fail();
             }
         }
+
+        [TestMethod]
+        public void WriteTest()
+        {
+            List<Computer> computers = ComputerManager.Populate();
+
+            bool results = ComputerManager.Write(computers, "computers.txt");
+            Assert.IsTrue(results);
+        }
+
+        [TestMethod]
+        public void ReadTest()
+        {
+            List<Computer> computers = ComputerManager.Read("computers.txt");
+            Assert.AreEqual(computers.Count, 2);
+        }
     }
 }

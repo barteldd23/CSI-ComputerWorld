@@ -23,6 +23,7 @@ namespace DDB.ComputerWorld.BL.Models
 
     public class Computer : Equipment //Means inherit Equipment Class. Can only inherit from 1 class
     {
+        const string DELIM = "|";
         public Computer()
         {
             Applications = new List<Application>();
@@ -93,6 +94,21 @@ namespace DDB.ComputerWorld.BL.Models
             get
             {
                 return this.Manufacturer + " " + Model + " " + Cost.ToString("C");
+            }
+        }
+
+        public string DataFormat
+        {
+            get
+            {
+                return Id + DELIM 
+                    + Manufacturer + DELIM 
+                    + Model + DELIM 
+                    + Cost + DELIM 
+                    + HardDriveSize + DELIM 
+                    + Memory + DELIM 
+                    + Processor + DELIM 
+                    + (int)EquipmentType;
             }
         }
 

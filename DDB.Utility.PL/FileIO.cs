@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DDB.Utility.PL
 {
@@ -60,6 +61,10 @@ namespace DDB.Utility.PL
             }
         }
 
+        public static bool Exists(string source)
+        {
+            return File.Exists(source);
+        }
         public static void Delete(string source)
         {
             try
@@ -90,11 +95,16 @@ namespace DDB.Utility.PL
         {
             try
             {
-                StreamWriter streamWriter = File.AppendText(filePath);
-                streamWriter.WriteLine(data);
-                streamWriter.Close();
-                streamWriter = null;
-                return true;
+                    StreamWriter streamWriter = File.AppendText(filePath);
+                    streamWriter.WriteLine(data);
+                    streamWriter.Close();
+                    streamWriter = null;
+                    return true;
+                
+            }
+            catch (FileNotFoundException)
+            {
+                throw;
             }
             catch (Exception)
             {
@@ -103,9 +113,41 @@ namespace DDB.Utility.PL
             }
         }
 
-        public static void Read()
+        public static string Read(string filePath)
         {
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    FileStream fileStream = new FileStream(filePath, 
+                                                           FileMode.Open, 
+                                                           FileAccess.Read, 
+                                                           FileShare.ReadWrite);
 
+                    StreamReader streamReader = new StreamReader(fileStream);
+
+                    string data = streamReader.ReadToEnd();
+
+                    fileStream.Close();
+                    streamReader.Close();
+                    streamReader = null;
+
+                    return data;
+                }
+                else
+                {
+                    throw new FileNotFoundException("File Not Found.", filePath);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public static void Rename(string source, string target)

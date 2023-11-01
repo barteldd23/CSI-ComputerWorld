@@ -1,4 +1,5 @@
 ﻿using DDB.ComputerWorld.BL.Models;
+using DDB.Utility.PL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,65 @@ namespace DDB.ComputerWorld.BL
             catch (Exception)
             {
 
+                throw;
+            }
+        }
+
+
+        public static List<Computer> Read(string filePath)
+        {
+            try
+            {
+                // Read all the data from the flat file.
+                string contents = FileIO.Read(filePath);
+
+                List<Computer> computers = new List<Computer>();
+
+                // Create an array of line rows of type string
+                // split by carriage return and line feed
+                string[] separators = new string[] { "\r\n" };
+                string[] rows = contents.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string row in rows)
+                {
+                    string[] dataRow = row.Split('|');
+
+                    Computer computer = new Computer
+                    {
+                        Id = int.Parse(dataRow[0]),
+                        Manufacturer = dataRow[1],
+                        Model = dataRow[2],
+                        Cost = double.Parse(dataRow[3]),
+                        HardDriveSize = int.Parse(dataRow[4]),
+                        Memory = double.Parse(dataRow[5]),
+                        Processor = dataRow[6],
+                        EquipmentType = (EquipmentTypes)(int.Parse(dataRow[7]))
+                    };
+
+                    computers.Add(computer);
+
+                }
+                return computers;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public static bool Write(List<Computer> computers, string filePath)
+        {
+            try
+            {
+                FileIO.Delete(filePath);
+                foreach(Computer computer in computers)
+                {
+                    FileIO.Write(filePath, computer.DataFormat);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }
