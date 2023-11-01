@@ -17,10 +17,20 @@ namespace DDB.Utility.PL
                     File.Copy(source, target, overwrite);
                 }
             }
+            catch (FileNotFoundException)
+            {
+                // Do other cool stuff. Write a flat file.
+                throw;
+            }
             catch (Exception)
             {
 
                 throw;
+            }
+            finally
+            {
+                // Do this at the end always.
+
             }
         }
 
@@ -33,10 +43,20 @@ namespace DDB.Utility.PL
                     File.Move(source, target, overwrite);
                 }
             }
+            catch (FileNotFoundException)
+            {
+                // Do other cool stuff. Write a flat file.
+                throw;
+            }
             catch (Exception)
             {
 
                 throw;
+            }
+            finally
+            {
+                // Do this at the end always.
+
             }
         }
 
@@ -49,10 +69,20 @@ namespace DDB.Utility.PL
                     File.Delete(source);
                 }
             }
+            catch (FileNotFoundException)
+            {
+                // Do other cool stuff. Write a flat file.
+                throw;
+            }
             catch (Exception)
             {
 
                 throw;
+            }
+            finally
+            {
+                // Do this at the end always.
+
             }
         }
 
@@ -70,12 +100,30 @@ namespace DDB.Utility.PL
         {
             try
             {
-
+                if(File.Exists(source))
+                {
+                    File.Move(source, target);
+                    File.Delete(source);
+                }
+                else
+                {
+                    throw new FileNotFoundException("File Not Found.", source);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                // Do other cool stuff. Write a flat file.
+                throw;
             }
             catch (Exception)
             {
 
                 throw;
+            }
+            finally
+            {
+                // Do this at the end always.
+
             }
         }
     }
