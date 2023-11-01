@@ -86,9 +86,21 @@ namespace DDB.Utility.PL
             }
         }
 
-        public static void Write()
+        public static bool Write(string filePath, string data)
         {
+            try
+            {
+                StreamWriter streamWriter = File.AppendText(filePath);
+                streamWriter.WriteLine(data);
+                streamWriter.Close();
+                streamWriter = null;
+                return true;
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
         }
 
         public static void Read()
