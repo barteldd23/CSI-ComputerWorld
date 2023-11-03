@@ -1,5 +1,6 @@
 using DDB.ComputerWorld.BL;
 using DDB.ComputerWorld.BL.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace DDB.ComputerWorld.UI
 {
@@ -7,6 +8,7 @@ namespace DDB.ComputerWorld.UI
     {
         List<Computer> computers;
         List<EquipmentType> equipmentTypes;
+        MySettings settings;
         public frmComputerWorld()
         {
             InitializeComponent();
@@ -17,6 +19,12 @@ namespace DDB.ComputerWorld.UI
 
             try
             {
+                settings = Program.Configuration.GetSection("MySettings").Get<MySettings>();
+
+                this.Text = settings.Text;
+                this.BackColor = settings.BackColor;
+
+
                 lblStatus.ForeColor = Color.Black;
                 computers = ComputerManager.Populate();
                 equipmentTypes = EquipmentTypeManager.Populate();
@@ -72,9 +80,12 @@ namespace DDB.ComputerWorld.UI
                     dgvChildren.DataSource = null;
                     dgvChildren.DataSource = computer.Applications;
                     dgvChildren.Columns[0].Visible = false;
+                    dgvChildren.Columns[1].Visible = false;
 
-                    dgvChildren.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    dgvChildren.Columns[2].DefaultCellStyle.Format = "C";
+                    dgvChildren.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    dgvChildren.Columns[3].DefaultCellStyle.Format = "C";
+
+                    dgvChildren.Columns[4].Visible = false;
 
                 }
 
@@ -265,6 +276,48 @@ namespace DDB.ComputerWorld.UI
                 lblStatus.Text = ex.Message;
             }
 
+        }
+
+        private void btnWriteDelimited_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
+
+                ApplicationManager.DeleteDataFile(settings.ApplicationFileName);
+
+                foreach (Computer computer in computers)
+                {
+                    ApplicationManager.Write(computer.Applications, settings.ApplicationFileName);
+                }
+
+
+                ComputerManager.Write(computers, settings.ComputerFileName);
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = ex.Message;
+            }
+        }
+
+        private void btnReadDelimited_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
+
+                computers = ComputerManager.Read(settings.ComputerFileName);
+
+
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = ex.Message;
+            }
         }
     }
 }

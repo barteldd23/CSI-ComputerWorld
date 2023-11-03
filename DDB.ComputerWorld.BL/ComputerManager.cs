@@ -67,12 +67,14 @@ namespace DDB.ComputerWorld.BL
         }
 
 
-        public static List<Computer> Read(string filePath)
+        public static List<Computer> Read(string filePath, string applicationsfilepath)
         {
             try
             {
                 // Read all the data from the flat file.
                 string contents = FileIO.Read(filePath);
+
+                List<Application> applications = ApplicationManager.Read(applicationsfilepath);
 
                 List<Computer> computers = new List<Computer>();
 
@@ -116,6 +118,7 @@ namespace DDB.ComputerWorld.BL
                 foreach(Computer computer in computers)
                 {
                     FileIO.Write(filePath, computer.DataFormat);
+                    
                 }
                 return true;
             }

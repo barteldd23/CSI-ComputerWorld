@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DDB.ComputerWorld.BL.Models;
 
 namespace DDB.ComputerWorld.BL.Test
 {
@@ -18,5 +19,25 @@ namespace DDB.ComputerWorld.BL.Test
             int actual = ApplicationManager.Populate(2).Count;
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void WriteTest()
+        {
+            List<Application> applications = new List<Application>();
+            applications.Add(new Application { Id =1, Name = "Me", ParentId = -1, Size =4});
+
+            Assert.IsTrue(ApplicationManager.Write(applications, "file.txt"));
+        }
+
+        [TestMethod]
+        public void ReadTest()
+        {
+            int expected = 5;
+            int actual = ApplicationManager.Read("applications.txt").Count;
+            Assert.AreEqual(expected, actual);
+        }
+
     }
+
+    
 }

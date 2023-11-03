@@ -52,6 +52,8 @@
             btnDeleteComputer = new Button();
             btnAddApplication = new Button();
             btnEditApplication = new Button();
+            btnReadDelimited = new Button();
+            btnWriteDelimited = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvChildren).BeginInit();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -217,7 +219,7 @@
             // 
             // btnFakeData
             // 
-            btnFakeData.Location = new Point(640, 36);
+            btnFakeData.Location = new Point(640, 37);
             btnFakeData.Name = "btnFakeData";
             btnFakeData.Size = new Size(148, 23);
             btnFakeData.TabIndex = 18;
@@ -227,7 +229,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(640, 60);
+            btnUpdate.Location = new Point(640, 62);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(148, 23);
             btnUpdate.TabIndex = 19;
@@ -237,7 +239,7 @@
             // 
             // btnDeleteComputer
             // 
-            btnDeleteComputer.Location = new Point(640, 84);
+            btnDeleteComputer.Location = new Point(640, 87);
             btnDeleteComputer.Name = "btnDeleteComputer";
             btnDeleteComputer.Size = new Size(148, 23);
             btnDeleteComputer.TabIndex = 20;
@@ -247,7 +249,7 @@
             // 
             // btnAddApplication
             // 
-            btnAddApplication.Location = new Point(640, 108);
+            btnAddApplication.Location = new Point(640, 112);
             btnAddApplication.Name = "btnAddApplication";
             btnAddApplication.Size = new Size(148, 23);
             btnAddApplication.TabIndex = 21;
@@ -257,7 +259,7 @@
             // 
             // btnEditApplication
             // 
-            btnEditApplication.Location = new Point(640, 132);
+            btnEditApplication.Location = new Point(640, 137);
             btnEditApplication.Name = "btnEditApplication";
             btnEditApplication.Size = new Size(148, 23);
             btnEditApplication.TabIndex = 22;
@@ -265,11 +267,33 @@
             btnEditApplication.UseVisualStyleBackColor = true;
             btnEditApplication.Click += btnEditApplication_Click;
             // 
+            // btnReadDelimited
+            // 
+            btnReadDelimited.Location = new Point(640, 162);
+            btnReadDelimited.Name = "btnReadDelimited";
+            btnReadDelimited.Size = new Size(148, 23);
+            btnReadDelimited.TabIndex = 23;
+            btnReadDelimited.Text = "Read Delimited";
+            btnReadDelimited.UseVisualStyleBackColor = true;
+            btnReadDelimited.Click += btnReadDelimited_Click;
+            // 
+            // btnWriteDelimited
+            // 
+            btnWriteDelimited.Location = new Point(640, 187);
+            btnWriteDelimited.Name = "btnWriteDelimited";
+            btnWriteDelimited.Size = new Size(148, 23);
+            btnWriteDelimited.TabIndex = 24;
+            btnWriteDelimited.Text = "Write Delimited";
+            btnWriteDelimited.UseVisualStyleBackColor = true;
+            btnWriteDelimited.Click += btnWriteDelimited_Click;
+            // 
             // frmComputerWorld
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnWriteDelimited);
+            Controls.Add(btnReadDelimited);
             Controls.Add(btnEditApplication);
             Controls.Add(btnAddApplication);
             Controls.Add(btnDeleteComputer);
@@ -330,5 +354,7 @@
         private Button btnDeleteComputer;
         private Button btnAddApplication;
         private Button btnEditApplication;
+        private Button btnReadDelimited;
+        private Button btnWriteDelimited;
     }
 }
