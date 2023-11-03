@@ -56,9 +56,27 @@ namespace DDB.ComputerWorld.BL.Test
         }
 
         [TestMethod]
+        public void WriteXMLTest()
+        {
+            List<Computer> items = ComputerManager.Populate();
+
+            bool results = ComputerManager.WriteXML(items, "computers.xml");
+            Assert.IsTrue(results);
+        }
+
+        [TestMethod]
         public void ReadTest()
         {
             List<Computer> computers = ComputerManager.Read("computers.txt", "applications.txt");
+            Assert.AreEqual(computers.Count, 2);
+            Assert.AreEqual(computers[0].Applications.Count, 3);
+            Assert.AreEqual(computers[1].Applications.Count, 2);
+        }
+
+        [TestMethod]
+        public void ReadXMLTest()
+        {
+            List<Computer> computers = ComputerManager.ReadXML("computers.xml");
             Assert.AreEqual(computers.Count, 2);
             Assert.AreEqual(computers[0].Applications.Count, 3);
             Assert.AreEqual(computers[1].Applications.Count, 2);

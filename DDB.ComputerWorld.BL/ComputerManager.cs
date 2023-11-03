@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace DDB.ComputerWorld.BL
 {
@@ -113,6 +114,29 @@ namespace DDB.ComputerWorld.BL
             }
         }
 
+        public static List<Computer> ReadXML(string xmlfilepath)
+        {
+            try
+            {
+                List<Computer> computers = new List<Computer>();
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Computer>));
+
+                TextReader reader = new StreamReader(xmlfilepath);
+
+                computers.AddRange((List<Computer>)serializer.Deserialize(reader));
+
+                reader.Close();
+                reader = null;
+                serializer = null;
+                return computers;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public static bool Write(List<Computer> computers, string filePath)
         {
             try
@@ -123,6 +147,26 @@ namespace DDB.ComputerWorld.BL
                     FileIO.Write(filePath, computer.DataFormat);
                     
                 }
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static bool WriteXML(List<Computer> computers, string filePath)
+        {
+            try
+            {
+                FileIO.Delete(filePath);
+
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Computer>));
+                TextWriter writer = new StreamWriter(filePath);
+                serializer.Serialize(writer, computers);
+                writer.Close();
+                writer = null;
+                serializer = null;
                 return true;
             }
             catch (Exception)

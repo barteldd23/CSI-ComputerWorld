@@ -27,7 +27,9 @@ namespace DDB.ComputerWorld.UI
 
                 lblStatus.ForeColor = Color.Black;
                 //computers = ComputerManager.Populate();
-                computers = ComputerManager.Read(settings.ComputerFileName, settings.ApplicationFileName);
+                //computers = ComputerManager.Read(settings.ComputerFileName, settings.ApplicationFileName);
+                computers = ComputerManager.ReadXML(settings.ComputerXMLFileName);
+
                 equipmentTypes = EquipmentTypeManager.Populate();
 
                 cbxEquipmentType.DataSource = equipmentTypes;
@@ -314,7 +316,8 @@ namespace DDB.ComputerWorld.UI
                 lblStatus.ForeColor = Color.Black;
                 lblStatus.Text = string.Empty;
 
-                computers = ComputerManager.Read(settings.ComputerFileName, settings.ApplicationFileName );
+                computers = ComputerManager.Read(settings.ComputerFileName, settings.ApplicationFileName);
+                Refresh();
 
 
             }
@@ -322,6 +325,50 @@ namespace DDB.ComputerWorld.UI
             {
                 lblStatus.ForeColor = Color.Red;
                 lblStatus.Text = ex.Message;
+            }
+        }
+
+        private void btnWriteXML_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
+
+                if (computers != null)
+                {
+                    bool results = ComputerManager.WriteXML(computers, settings.ComputerXMLFileName);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = ex.Message;
+            }
+        }
+
+        private void btnReadXML_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
+
+                computers = ComputerManager.ReadXML(settings.ComputerXMLFileName);
+                Refresh();
+
+
+            }
+            catch (FileNotFoundException)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = "File not found: " + settings.ComputerXMLFileName;
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = "Error: " + ex.Message;
             }
         }
     }

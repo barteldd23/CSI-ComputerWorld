@@ -41,6 +41,15 @@ namespace DDB.ComputerWorld.BL.Models
             set { applicationFileName = value; }
         }
 
-  
+        private string computerXMLFileName;
+
+        public string ComputerXMLFileName
+        {
+            get { return computerXMLFileName; }
+            set { computerXMLFileName = value; }
+        }
+
+
+
     }
 }

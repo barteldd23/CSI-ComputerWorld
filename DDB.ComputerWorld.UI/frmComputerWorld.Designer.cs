@@ -54,6 +54,8 @@
             btnEditApplication = new Button();
             btnReadDelimited = new Button();
             btnWriteDelimited = new Button();
+            btnWriteXML = new Button();
+            btnReadXML = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvChildren).BeginInit();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -287,11 +289,33 @@
             btnWriteDelimited.UseVisualStyleBackColor = true;
             btnWriteDelimited.Click += btnWriteDelimited_Click;
             // 
+            // btnWriteXML
+            // 
+            btnWriteXML.Location = new Point(640, 212);
+            btnWriteXML.Name = "btnWriteXML";
+            btnWriteXML.Size = new Size(148, 23);
+            btnWriteXML.TabIndex = 25;
+            btnWriteXML.Text = "Write XML";
+            btnWriteXML.UseVisualStyleBackColor = true;
+            btnWriteXML.Click += btnWriteXML_Click;
+            // 
+            // btnReadXML
+            // 
+            btnReadXML.Location = new Point(640, 237);
+            btnReadXML.Name = "btnReadXML";
+            btnReadXML.Size = new Size(148, 23);
+            btnReadXML.TabIndex = 26;
+            btnReadXML.Text = "Read XML";
+            btnReadXML.UseVisualStyleBackColor = true;
+            btnReadXML.Click += btnReadXML_Click;
+            // 
             // frmComputerWorld
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnReadXML);
+            Controls.Add(btnWriteXML);
             Controls.Add(btnWriteDelimited);
             Controls.Add(btnReadDelimited);
             Controls.Add(btnEditApplication);
@@ -356,5 +380,7 @@
         private Button btnEditApplication;
         private Button btnReadDelimited;
         private Button btnWriteDelimited;
+        private Button btnWriteXML;
+        private Button btnReadXML;
     }
 }
