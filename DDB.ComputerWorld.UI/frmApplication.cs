@@ -66,6 +66,7 @@ namespace DDB.ComputerWorld.UI
 
                     application.Name = txtName.Text;
                     application.Size = double.Parse(txtSize.Text);
+                    application.ParentId = computer.Id;
 
                     computer.Applications.Add(application);
                 }

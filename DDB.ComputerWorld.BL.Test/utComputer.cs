@@ -58,8 +58,10 @@ namespace DDB.ComputerWorld.BL.Test
         [TestMethod]
         public void ReadTest()
         {
-            List<Computer> computers = ComputerManager.Read("computers.txt");
+            List<Computer> computers = ComputerManager.Read("computers.txt", "applications.txt");
             Assert.AreEqual(computers.Count, 2);
+            Assert.AreEqual(computers[0].Applications.Count, 3);
+            Assert.AreEqual(computers[1].Applications.Count, 2);
         }
     }
 }

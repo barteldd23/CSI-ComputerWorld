@@ -98,6 +98,9 @@ namespace DDB.ComputerWorld.BL
                         EquipmentType = (EquipmentTypes)(int.Parse(dataRow[7]))
                     };
 
+                    // Get all of this computer's applications.
+                    computer.Applications = applications.Where(a => a.ParentId == computer.Id).ToList();
+
                     computers.Add(computer);
 
                 }

@@ -26,7 +26,8 @@ namespace DDB.ComputerWorld.UI
 
 
                 lblStatus.ForeColor = Color.Black;
-                computers = ComputerManager.Populate();
+                //computers = ComputerManager.Populate();
+                computers = ComputerManager.Read(settings.ComputerFileName, settings.ApplicationFileName);
                 equipmentTypes = EquipmentTypeManager.Populate();
 
                 cbxEquipmentType.DataSource = equipmentTypes;
@@ -76,16 +77,8 @@ namespace DDB.ComputerWorld.UI
 
                     cbxEquipmentType.SelectedIndex = (int)computer.EquipmentType;
 
-                    // Show the applications for this computer.
-                    dgvChildren.DataSource = null;
-                    dgvChildren.DataSource = computer.Applications;
-                    dgvChildren.Columns[0].Visible = false;
-                    dgvChildren.Columns[1].Visible = false;
-
-                    dgvChildren.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    dgvChildren.Columns[3].DefaultCellStyle.Format = "C";
-
-                    dgvChildren.Columns[4].Visible = false;
+                    //Show the applications for this computer
+                    RefreshApplications(computer.Applications);
 
                 }
 
@@ -95,6 +88,20 @@ namespace DDB.ComputerWorld.UI
                 lblStatus.ForeColor = Color.Red;
                 lblStatus.Text = ex.Message;
             }
+        }
+
+        private void RefreshApplications(List<BL.Models.Application> applications)
+        {
+            // Show the applications for this computer.
+            dgvChildren.DataSource = null;
+            dgvChildren.DataSource = applications;
+            dgvChildren.Columns[0].Visible = false;
+            dgvChildren.Columns[1].Visible = false;
+
+            dgvChildren.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvChildren.Columns[3].DefaultCellStyle.Format = "C";
+
+            dgvChildren.Columns[4].Visible = false;
         }
 
         private void btnMakeComputer_Click(object sender, EventArgs e)
@@ -229,8 +236,7 @@ namespace DDB.ComputerWorld.UI
                     frmApplication.Computer = computers[lbxEquipment.SelectedIndex];
                     frmApplication.ShowDialog();
 
-                    dgvChildren.DataSource = null;
-                    dgvChildren.DataSource = computers[lbxEquipment.SelectedIndex].Applications;
+                    RefreshApplications(computers[lbxEquipment.SelectedIndex].Applications);
                 }
                 else
                 {
@@ -262,8 +268,7 @@ namespace DDB.ComputerWorld.UI
                     frmApplication.ApplicationId = dgvChildren.CurrentRow.Index;
                     frmApplication.ShowDialog();
 
-                    dgvChildren.DataSource = null;
-                    dgvChildren.DataSource = computers[lbxEquipment.SelectedIndex].Applications;
+                    RefreshApplications(computers[lbxEquipment.SelectedIndex].Applications);
                 }
                 else
                 {
@@ -309,7 +314,7 @@ namespace DDB.ComputerWorld.UI
                 lblStatus.ForeColor = Color.Black;
                 lblStatus.Text = string.Empty;
 
-                computers = ComputerManager.Read(settings.ComputerFileName);
+                computers = ComputerManager.Read(settings.ComputerFileName, settings.ApplicationFileName );
 
 
             }
