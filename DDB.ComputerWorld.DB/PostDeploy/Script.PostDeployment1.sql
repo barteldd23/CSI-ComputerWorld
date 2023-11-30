@@ -9,5 +9,7 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-
+:r DefaultData\Applications.sql
+:r DefaultData\Computers.sql
+:r DefaultData\EquipmentTypes.sql
 

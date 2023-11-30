@@ -72,6 +72,8 @@
   <ItemGroup>
     <None Include="local.publish.xml" />
     <None Include="PostDeploy\DefaultData\EquipmentTypes.sql" />
+    <None Include="PostDeploy\DefaultData\Applications.sql" />
+    <None Include="PostDeploy\DefaultData\Computers.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeploy\Script.PreDeployment1.sql" />
