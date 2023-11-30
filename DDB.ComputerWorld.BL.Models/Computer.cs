@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DDB.Utility.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,9 @@ namespace DDB.ComputerWorld.BL.Models
         }
     }
 
-    public class Computer : Equipment //Means inherit Equipment Class. Can only inherit from 1 class
+    // :Equipment Means INHERIT Equipment Class. Can only inherit from 1 class
+    // ,IComputer means IMPLEMENT the interface
+    public class Computer : Equipment, IComputer 
     {
         const string DELIM = "|";
         public Computer()
@@ -110,6 +113,16 @@ namespace DDB.ComputerWorld.BL.Models
                     + Processor + DELIM 
                     + (int)EquipmentType;
             }
+        }
+
+        public bool Write()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int DoIt(string userId)
+        {
+            throw new NotImplementedException();
         }
 
 
