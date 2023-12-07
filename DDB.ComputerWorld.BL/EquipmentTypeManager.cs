@@ -1,6 +1,9 @@
 ﻿using DDB.ComputerWorld.BL.Models;
+using DDB.Utility.PL;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,5 +30,38 @@ namespace DDB.ComputerWorld.BL
 
             return equipmentTypes;
         }
+
+        public static List<EquipmentType> ReadDb()
+        {
+            try
+            {
+                List<EquipmentType> equipmentTypes = new List<EquipmentType>();
+                Database database = new Database();
+                DataTable dataTable = new DataTable();
+
+                string sql = "Select * from tblEquipmentType";
+                SqlCommand sqlCommand = new SqlCommand(sql);
+
+                dataTable = database.Select(sqlCommand);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    EquipmentType equipmentType = new EquipmentType();
+                    equipmentType.Id = Convert.ToInt32(row["Id"]);
+                    equipmentType.Name = row["Name"].ToString();
+                    equipmentTypes.Add(equipmentType);
+                }
+
+                return equipmentTypes;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
+
+   
 }

@@ -20,5 +20,14 @@ namespace DDB.ComputerWorld.BL.Test
             Assert.AreEqual(EquipmentTypes.Printer.ToString(), items[3].Name);
             Assert.AreEqual((int)EquipmentTypes.Printer, items[3].Id);
         }
+
+        [TestMethod]
+        public void ReadDbTest()
+        {
+            int actual = EquipmentTypeManager.ReadDb().Count;
+            Assert.AreEqual(9, actual);
+        }
     }
+
+    
 }
