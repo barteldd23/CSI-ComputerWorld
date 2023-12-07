@@ -37,6 +37,51 @@ namespace DDB.ComputerWorld.BL.Test
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void LoadTest()
+        {
+            Assert.AreEqual(7, ApplicationManager.ReadDb().Count);
+        }
+
+        [TestMethod]
+        public void LoadByParentIdTest()
+        {
+            Assert.AreEqual(3, ApplicationManager.ReadDb(1).Count);
+            Assert.AreEqual(4, ApplicationManager.ReadDb(2).Count);
+        }
+
+        [TestMethod]
+        public void InsertTest()
+        {
+            Application application = new Application
+            {
+                Id = -1,
+                Name = "Outlook",
+                ParentId = 2,
+                Size = 4
+            };
+
+            Assert.AreEqual(1, ApplicationManager.Insert(application, true));
+        }
+
+        [TestMethod]
+        public void UpdateTest()
+        {
+            
+        }
+
+        [TestMethod]
+        public void DeleteTest()
+        {
+            Assert.AreEqual(1, ApplicationManager.Delete(1, true));
+        }
+
+        [TestMethod]
+        public void DeleteByParentIdTest()
+        {
+            Assert.AreEqual(4, ApplicationManager.DeleteByParentId(2, true));
+        }
+
     }
 
     
