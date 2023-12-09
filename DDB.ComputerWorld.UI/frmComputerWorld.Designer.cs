@@ -56,6 +56,11 @@
             btnWriteDelimited = new Button();
             btnWriteXML = new Button();
             btnReadXML = new Button();
+            btnDeleteDb = new Button();
+            btnUpdateDb = new Button();
+            btnInsertDb = new Button();
+            btnLoadById = new Button();
+            btnLoadAll = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvChildren).BeginInit();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -84,9 +89,9 @@
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { lblStatus });
-            statusStrip1.Location = new Point(0, 428);
+            statusStrip1.Location = new Point(0, 430);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(800, 22);
+            statusStrip1.Size = new Size(877, 22);
             statusStrip1.TabIndex = 2;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -309,11 +314,66 @@
             btnReadXML.UseVisualStyleBackColor = true;
             btnReadXML.Click += btnReadXML_Click;
             // 
+            // btnDeleteDb
+            // 
+            btnDeleteDb.Location = new Point(705, 398);
+            btnDeleteDb.Name = "btnDeleteDb";
+            btnDeleteDb.Size = new Size(148, 23);
+            btnDeleteDb.TabIndex = 27;
+            btnDeleteDb.Text = "Delete Db";
+            btnDeleteDb.UseVisualStyleBackColor = true;
+            btnDeleteDb.Click += btnDeleteDb_Click;
+            // 
+            // btnUpdateDb
+            // 
+            btnUpdateDb.Location = new Point(705, 369);
+            btnUpdateDb.Name = "btnUpdateDb";
+            btnUpdateDb.Size = new Size(148, 23);
+            btnUpdateDb.TabIndex = 28;
+            btnUpdateDb.Text = "Update Db";
+            btnUpdateDb.UseVisualStyleBackColor = true;
+            btnUpdateDb.Click += btnUpdateDb_Click;
+            // 
+            // btnInsertDb
+            // 
+            btnInsertDb.Location = new Point(705, 340);
+            btnInsertDb.Name = "btnInsertDb";
+            btnInsertDb.Size = new Size(148, 23);
+            btnInsertDb.TabIndex = 29;
+            btnInsertDb.Text = "Insert Db";
+            btnInsertDb.UseVisualStyleBackColor = true;
+            btnInsertDb.Click += btnInsertDb_Click;
+            // 
+            // btnLoadById
+            // 
+            btnLoadById.Location = new Point(705, 311);
+            btnLoadById.Name = "btnLoadById";
+            btnLoadById.Size = new Size(148, 23);
+            btnLoadById.TabIndex = 30;
+            btnLoadById.Text = "Load One";
+            btnLoadById.UseVisualStyleBackColor = true;
+            btnLoadById.Click += btnLoadById_Click;
+            // 
+            // btnLoadAll
+            // 
+            btnLoadAll.Location = new Point(705, 282);
+            btnLoadAll.Name = "btnLoadAll";
+            btnLoadAll.Size = new Size(148, 23);
+            btnLoadAll.TabIndex = 31;
+            btnLoadAll.Text = "Load All";
+            btnLoadAll.UseVisualStyleBackColor = true;
+            btnLoadAll.Click += btnLoadAll_Click;
+            // 
             // frmComputerWorld
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(877, 452);
+            Controls.Add(btnLoadAll);
+            Controls.Add(btnLoadById);
+            Controls.Add(btnInsertDb);
+            Controls.Add(btnUpdateDb);
+            Controls.Add(btnDeleteDb);
             Controls.Add(btnReadXML);
             Controls.Add(btnWriteXML);
             Controls.Add(btnWriteDelimited);
@@ -382,5 +442,10 @@
         private Button btnWriteDelimited;
         private Button btnWriteXML;
         private Button btnReadXML;
+        private Button btnDeleteDb;
+        private Button btnUpdateDb;
+        private Button btnInsertDb;
+        private Button btnLoadById;
+        private Button btnLoadAll;
     }
 }

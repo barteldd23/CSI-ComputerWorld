@@ -371,5 +371,117 @@ namespace DDB.ComputerWorld.UI
                 lblStatus.Text = "Error: " + ex.Message;
             }
         }
+
+        private void btnLoadAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
+
+                computers = ComputerManager.REadDB();
+                Refresh();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = "Error: " + ex.Message;
+            }
+        }
+
+        private void btnLoadById_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
+
+                computers = ComputerManager.REadDB();
+                Refresh();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = "Error: " + ex.Message;
+            }
+        }
+
+        private void btnInsertDb_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
+
+                Computer computer = new Computer();
+                computer.Id = 1;
+                if (computers.Any())
+                    computer.Id = computers.Max(c => c.Id) + 1;
+
+                SetProperties(computer);
+
+                computers.Add(computer);
+                int results = ComputerManager.Insert(computer);
+                Refresh();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = "Error: " + ex.Message;
+            }
+        }
+
+        private void btnUpdateDb_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
+
+                Computer computer = computers[lbxEquipment.SelectedIndex];
+
+                // Get the max id for all applications in all computer
+                int maxId = 0;
+                foreach (Computer c in computers)
+                {
+                    foreach (BL.Models.Application a in c.Applications)
+                    {
+                        if (a.Id > maxId)
+                            maxId = a.Id;
+                    }
+                }
+
+                SetProperties(computer);
+
+                int results = ComputerManager.Update(computer, maxId);
+                Refresh();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = "Error: " + ex.Message;
+            }
+        }
+
+        private void btnDeleteDb_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Black;
+                lblStatus.Text = string.Empty;
+
+                Computer computer = computers[lbxEquipment.SelectedIndex];
+
+
+                int results = ComputerManager.Delete(computer);
+                computers.Remove(computer);
+                Refresh();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = "Error: " + ex.Message;
+            }
+        }
     }
 }
