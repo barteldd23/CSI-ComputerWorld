@@ -137,5 +137,12 @@ namespace DDB.ComputerWorld.BL.Test
             int newid = applications.Max(app => app.Id);
             Assert.AreNotEqual(0, ComputerManager.Update(computer, newid, true));
         }
+
+        [TestMethod]
+        public void DeleteTest()
+        {
+            Computer computer = ComputerManager.REadDB(1);
+            Assert.AreEqual(1, ComputerManager.Delete(computer, true));
+        }
     }
 }

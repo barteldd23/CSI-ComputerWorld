@@ -346,6 +346,31 @@ namespace DDB.ComputerWorld.BL
             }
         }
 
+        public static int Delete(Computer computer, bool rollback = false)
+        {
+            try
+            {
+                Database db = new Database();
+                DataTable data = new DataTable();
+
+                string sql = "delete from tblComputer where Id = @Id";
+
+                SqlCommand command = new SqlCommand(sql);
+                command.Parameters.AddWithValue("@Id", computer.Id);
+
+                ApplicationManager.DeleteByParentId(computer.Id, rollback);
+
+                int iRows = db.Delete(command, rollback);
+
+                return iRows;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
 
 
     }
