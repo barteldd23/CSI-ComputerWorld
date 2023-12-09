@@ -2,6 +2,8 @@
 using DDB.Utility.PL;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -174,5 +176,89 @@ namespace DDB.ComputerWorld.BL
                 throw;
             }
         }
+
+        public static List<Computer> REadDB()
+        {
+            try
+            {
+                Database db = new Database();
+                DataTable data = new DataTable();
+
+                string sql = "Select * from tblComputer";
+                SqlCommand command = new SqlCommand(sql);
+
+                data = db.Select(command);
+
+                if (data.Rows.Count == 0)
+                    throw new Exception("Row does not exist.");
+
+                List<Computer> computers = new List<Computer>();
+                foreach(DataRow dr in data.Rows)
+                {
+                    Computer computer = new Computer();
+                    computer.Id = Convert.ToInt32(dr["ID"]);
+                    computer.Model = dr["Model"].ToString();
+                    computer.Cost = Convert.ToDouble(dr["Cost"]);
+                    computer.HardDriveSize = Convert.ToInt32(dr["HardDriveSize"]);
+                    computer.Memory = Convert.ToDouble(dr["Memory"]);
+                    computer.EquipmentType = (EquipmentTypes)Convert.ToInt32(dr["EquipmentType"]);
+                    computer.Processor = dr["Processor"].ToString();
+
+                    computer.Applications = ApplicationManager.ReadDb(computer.Id);
+
+                    computers.Add(computer);
+                }
+
+                
+
+                return computers;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public static Computer REadDB(int id)
+        {
+            try
+            {
+                Database db = new Database();
+                DataTable data = new DataTable();
+
+                string sql = "Select * from tblComputer where id = @Id";
+                SqlCommand command = new SqlCommand(sql);
+                command.Parameters.AddWithValue("@Id", id);
+
+                data = db.Select(command);
+
+                if (data.Rows.Count == 0)
+                    throw new Exception("Row does not exist.");
+
+                DataRow dr = data.Rows[0];
+
+                Computer computer = new Computer();
+                computer.Id = Convert.ToInt32(dr["ID"]);
+                computer.Model = dr["Model"].ToString();
+                computer.Cost = Convert.ToDouble(dr["Cost"]);
+                computer.HardDriveSize = Convert.ToInt32(dr["HardDriveSize"]);
+                computer.Memory = Convert.ToDouble(dr["Memory"]);
+                computer.EquipmentType = (EquipmentTypes)Convert.ToInt32(dr["EquipmentType"]);
+                computer.Processor = dr["Processor"].ToString();
+
+                computer.Applications = ApplicationManager.ReadDb(computer.Id);
+
+                return computer;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+
     }
 }

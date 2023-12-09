@@ -81,5 +81,22 @@ namespace DDB.ComputerWorld.BL.Test
             Assert.AreEqual(computers[0].Applications.Count, 3);
             Assert.AreEqual(computers[1].Applications.Count, 2);
         }
+
+        [TestMethod]
+        public void ReadDbByIdTest()
+        {
+            Computer computer = ComputerManager.REadDB(1);
+            Assert.AreEqual(computer.Model, "6100");
+            Assert.AreEqual(computer.Applications.Count, 3);
+        }
+
+        [TestMethod]
+        public void ReadDbTest()
+        {
+            List<Computer> computers = ComputerManager.REadDB();
+            Assert.AreEqual(computers.Count, 2);
+            Assert.AreEqual(computers[0].Applications.Count, 3);
+            Assert.AreEqual(computers[1].Applications.Count, 4);
+        }
     }
 }
