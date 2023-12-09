@@ -391,19 +391,6 @@ namespace DDB.ComputerWorld.UI
 
         private void btnLoadById_Click(object sender, EventArgs e)
         {
-            try
-            {
-                lblStatus.ForeColor = Color.Black;
-                lblStatus.Text = string.Empty;
-
-                computers = ComputerManager.REadDB();
-                Refresh();
-            }
-            catch (Exception ex)
-            {
-                lblStatus.ForeColor = Color.Red;
-                lblStatus.Text = "Error: " + ex.Message;
-            }
         }
 
         private void btnInsertDb_Click(object sender, EventArgs e)
