@@ -258,6 +258,47 @@ namespace DDB.ComputerWorld.BL
             }
         }
 
+        public static int Insert(Computer computer, bool rollback = false)
+        {
+            try
+            {
+                Database db = new Database();
+                DataTable data = new DataTable();
+
+                string sql = "insert into tblComputer (Id, Manufacturer, Memory, Model, EquipmentType, Cost,";
+                sql += " HardDrivesize, Processor)";
+                sql += " Values (@Id, @manufacturer, @memory, @model, @equipementtype, @cost, @harddrivesize, @processor)";
+
+                SqlCommand command = new SqlCommand(sql);
+                command.Parameters.AddWithValue("@Id", computer.Id);
+                command.Parameters.AddWithValue("@manufacturer", computer.Manufacturer);
+                command.Parameters.AddWithValue("@memory", computer.Memory);
+                command.Parameters.AddWithValue("@model", computer.Model);
+                command.Parameters.AddWithValue("@equipementtype", computer.EquipmentType);
+                command.Parameters.AddWithValue("@cost", computer.Cost);
+                command.Parameters.AddWithValue("@harddrivesize", computer.HardDriveSize);
+                command.Parameters.AddWithValue("@processor", computer.Processor);
+
+                int iRows = db.Insert(command, rollback);
+
+                if(computer.Applications != null)
+                {
+                    foreach(Application application in computer.Applications)
+                    {
+                        iRows += ApplicationManager.Insert(application, rollback);
+                    }
+                }
+
+                return iRows;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
 
 
     }

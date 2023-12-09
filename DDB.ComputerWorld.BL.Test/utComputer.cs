@@ -98,5 +98,31 @@ namespace DDB.ComputerWorld.BL.Test
             Assert.AreEqual(computers[0].Applications.Count, 3);
             Assert.AreEqual(computers[1].Applications.Count, 4);
         }
+
+        [TestMethod]
+        public void InsertTest()
+        {
+            Computer computer = new Computer();
+            computer.Id = 99;
+            computer.Manufacturer = "Test";
+            computer.Model = "Test";
+            computer.Cost = 999;
+            computer.Processor = "Test";
+            computer.HardDriveSize = 123;
+            computer.EquipmentType= EquipmentTypes.OfficeChair;
+
+            List<Application> applications = ApplicationManager.ReadDb();
+            int newid = applications.Max(app => app.Id) + 1;
+
+            computer.Applications.Add(new Application
+            {
+                Id = newid,
+                Name = "Outlook",
+                Size = 25,
+                ParentId = computer.Id
+            });
+
+            Assert.AreEqual(ComputerManager.Insert(computer, true), 2);
+        }
     }
 }
