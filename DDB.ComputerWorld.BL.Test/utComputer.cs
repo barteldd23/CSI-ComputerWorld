@@ -124,5 +124,18 @@ namespace DDB.ComputerWorld.BL.Test
 
             Assert.AreEqual(ComputerManager.Insert(computer, true), 2);
         }
+
+        [TestMethod]
+        public void UpdateTest()
+        {
+            Computer computer = ComputerManager.REadDB(1);
+            computer.Manufacturer = "New Manufacturer";
+
+            computer.Applications[1].Name = "New App";
+
+            List<Application> applications = ApplicationManager.ReadDb();
+            int newid = applications.Max(app => app.Id);
+            Assert.AreNotEqual(0, ComputerManager.Update(computer, newid, true));
+        }
     }
 }
